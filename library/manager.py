@@ -56,9 +56,12 @@ class Manager:
         if not self.subs.is_subscriber_reg_with_topic(sub_id,topic_name):
             return dict(status="failure",message=f"Consumer:{sub_id} is not registered with Topic:{topic_name}"), 400
         idx=self.subs.get_curr_idx(sub_id)
-        msg=self.tq.get_msg_for_topic_at_idx(topic_name,idx)
-        self.subs.topic_consumed_increase_curr_idx(sub_id)
-        return dict(status="success",message=msg), 200
+        try:
+            msg=self.tq.get_msg_for_topic_at_idx(topic_name,idx)
+            self.subs.topic_consumed_increase_curr_idx(sub_id)
+            return dict(status="success",message=msg), 200
+        except KeyError:
+            return dict(status="failure",message=f"Empty logs for Comsumer:{sub_id} for Topic:{topic_name}"), 400
 
     def Size(self,topic_name,sub_id):
         if not self.subs.is_valid_id(sub_id):
