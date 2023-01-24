@@ -1,7 +1,10 @@
 from flask import Flask, jsonify, request
 from library.manager import Manager
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
 mgr=Manager()
 
 @app.route("/topics",methods=["GET","POST"])
@@ -55,9 +58,7 @@ def get_size():
     response,status=mgr.Size(topic_name,sub_id)
     return jsonify(response),status
 
+
 @app.errorhandler(Exception)
 def handle_exception(e):
     return jsonify("Internal server Error: check params"),500
-  
-if __name__ == '__main__':
-    app.run(debug = True)
