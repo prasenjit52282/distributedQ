@@ -4,7 +4,7 @@ COPY . /app
 WORKDIR /app
 
 RUN pip install --upgrade pip
-RUN pip install -r Requirements.txt
+RUN pip install -r requirements.txt
 
 ENV FLASK_APP=broker.py
 ENV FLASK_RUN_HOST=0.0.0.0
