@@ -11,8 +11,7 @@ class TopicQueues:
         log_df.loc[log_df.shape[0]]=msg
         
     def add_new_topic(self,topic_name):
-        if not self.is_topic_exist():
-            self.queues[topic_name]=self.get_empty_topic_log()
+        self.queues[topic_name]=self.get_empty_topic_log()
         
     def add_msg_for_topic(self,topic_name,msg):
         self.add_msg_to_log(self.queues[topic_name],msg)
