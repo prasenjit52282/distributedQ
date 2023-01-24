@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 
 class TopicQueues:
@@ -12,7 +11,7 @@ class TopicQueues:
         log_df.loc[log_df.shape[0]]=msg
         
     def add_new_topic(self,topic_name):
-        if topic_name not in self.queues:
+        if not self.is_topic_exist():
             self.queues[topic_name]=self.get_empty_topic_log()
         
     def add_msg_for_topic(self,topic_name,msg):
@@ -25,3 +24,9 @@ class TopicQueues:
     def topic_last_idx(self,topic_name):
         idx=self.queues[topic_name].shape[0]-1
         return 0 if idx<0 else idx
+
+    def get_topic_list(self):
+        return list(self.queues.keys())
+
+    def is_topic_exist(self,topic_name):
+        return topic_name in self.queues

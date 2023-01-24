@@ -18,3 +18,6 @@ class Publishers:
 
     def is_publisher_reg_with_topic(self,pub_id,topic_name):
         return self.publ.loc[pub_id,"topic"]==topic_name
+
+    def is_valid_id(self,pub_id):
+        return 0<=pub_id<self.publ.shape[0]
