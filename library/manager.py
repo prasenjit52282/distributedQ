@@ -38,6 +38,27 @@ class Manager:
         self.pubs.reg_publisher_with_topic(pub_id,topic_name)
         return dict(status="success",producer_id=pub_id)
 
+    def Enqueue(self,topic_name,pub_id,msg):
+        if not self.pubs.is_valid_id(pub_id):
+            return dict(status="failure",message=f"Producer:{pub_id} does not exist")
+        if not self.tq.is_topic_exist(topic_name):
+            return dict(status="failure",message=f"Topic:{topic_name} does not exist")
+        if not self.pubs.is_publisher_reg_with_topic(pub_id,topic_name):
+            return dict(status="failure",message=f"Producer:{pub_id} is not registered with Topic:{topic_name}")
+        self.tq.add_msg_for_topic(topic_name,msg)
+        return dict(status="success")
+
+    def Dequeue(self,topic_name,sub_id):
+        if not self.subs.is_valid_id(sub_id):
+            return dict(status="failure",message=f"Consumer:{sub_id} does not exist")
+        if not self.tq.is_topic_exist(topic_name):
+            return dict(status="failure",message=f"Topic:{topic_name} does not exist")
+        if not self.subs.is_subscriber_reg_with_topic(sub_id,topic_name):
+            return dict(status="failure",message=f"Consumer:{sub_id} is not registered with Topic:{topic_name}")
+        idx=self.subs.get_curr_idx(sub_id)
+        msg=self.tq.get_msg_for_topic_at_idx(topic_name,idx)
+        self.subs.topic_consumed_increase_curr_idx(sub_id)
+        return dict(status="success",message=msg)
 
     def Size(self,topic_name,sub_id):
         if not self.subs.is_valid_id(sub_id):
