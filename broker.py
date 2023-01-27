@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-mgr=Manager()
+mgr=Manager(True)
 
 @app.route("/topics",methods=["GET","POST"])
 def handle_topics():
@@ -62,3 +62,7 @@ def get_size():
 @app.errorhandler(Exception)
 def handle_exception(e):
     return jsonify("Internal server Error: check params"),500
+
+
+if __name__=='__main__':
+    app.run(host='0.0.0.0',port=5000,debug=True)

@@ -2,11 +2,16 @@ import numpy as np
 from .helper import DataHandler
 
 class Subscribers:
-    def __init__(self):
-        self.subl=self.get_init_sub_list()
+    def __init__(self,is_SQL=False,tablename=None,SQL_handle=None):
+        self.is_SQL=is_SQL
+        self.sql_handle=SQL_handle
+        self._setup(tablename)
+
+    def _setup(self,tablename):
+        self.subl=self.get_init_sub_list(tablename)
         
-    def get_init_sub_list(self):
-        return DataHandler(columns=['topic','curr_idx'])
+    def get_init_sub_list(self,tablename):
+        return DataHandler(columns=['topic','curr_idx'],dtypes=["str","int"],is_SQL=self.is_SQL,SQL_handle=self.sql_handle,table_name=tablename)
 
     def add_subscriber(self):
         sub_id=self.subl.Count #index is the sub_id

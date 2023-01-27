@@ -1,9 +1,22 @@
 from .publisher import Publishers
 from .subscriber import Subscribers
 from .topicq import TopicQueues
+from .helper import SQLHandler
 
 class Manager:
-    def __init__(self):
+    def __init__(self,is_SQL=False):
+        if is_SQL:
+            self._setupSQL()
+        else:
+            self._setupInMEM()
+
+    def _setupSQL(self):
+        self.sql_handler=SQLHandler(host='localhost',user='root',password='abc',db='dQdb')
+        self.tq=TopicQueues(is_SQL=True,tablenames=self.sql_handler.getTopicTables(),SQL_handle=self.sql_handler)
+        self.pubs=Publishers(is_SQL=True,tablename='publ',SQL_handle=self.sql_handler)
+        self.subs=Subscribers(is_SQL=True,tablename='subl',SQL_handle=self.sql_handler)
+    
+    def _setupInMEM(self):
         self.tq=TopicQueues()
         self.pubs=Publishers()
         self.subs=Subscribers()

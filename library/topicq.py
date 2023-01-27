@@ -2,18 +2,27 @@ from .helper import DataHandler
 from threading import Semaphore
 
 class TopicQueues:
-    def __init__(self):
+    def __init__(self,is_SQL=False,tablenames=[],SQL_handle=None):
         self.queues={}
         self.locks={}
+
+        self.is_SQL=is_SQL
+        self.sql_handle=SQL_handle
+        if self.is_SQL:
+            self._restoreSQLTables(tablenames)
+
+    def _restoreSQLTables(self,tablenames):
+        for tbname in tablenames:
+            self.add_new_topic(tbname)
         
-    def get_empty_topic_log(self):
-        return DataHandler(columns=['msg'])
+    def get_empty_topic_log(self,table_name):
+        return DataHandler(columns=['msg'],dtypes=['str'],is_SQL=self.is_SQL,SQL_handle=self.sql_handle,table_name=table_name)
 
     def add_msg_to_log(self,log_df,msg): #index is the order & time
         log_df.Insert(msg)
         
     def add_new_topic(self,topic_name):
-        self.queues[topic_name]=self.get_empty_topic_log()
+        self.queues[topic_name]=self.get_empty_topic_log(topic_name)
         self.locks[topic_name]=Semaphore()
         
     def add_msg_for_topic(self,topic_name,msg):
