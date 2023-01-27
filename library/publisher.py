@@ -1,23 +1,23 @@
 import numpy as np
-import pandas as pd
+from .helper import DataHandler
 
 class Publishers:
     def __init__(self):
         self.publ=self.get_init_pub_list()
         
     def get_init_pub_list(self):
-        return pd.DataFrame(columns=['topic'])
+        return DataHandler(columns=['topic'])
 
     def add_publisher(self):
-        pub_id=self.publ.shape[0] #index is the pub_id
-        self.publ.loc[self.publ.shape[0],"topic"]=np.nan
+        pub_id=self.publ.Count
+        self.publ.Insert([np.nan])
         return pub_id
 
     def reg_publisher_with_topic(self,pub_id,topic_name): #id is same is index
-        self.publ.loc[pub_id,"topic"]=topic_name
+        self.publ.Update(pub_id,"topic",topic_name)
 
     def is_publisher_reg_with_topic(self,pub_id,topic_name):
-        return self.publ.loc[pub_id,"topic"]==topic_name
+        return self.publ.GetAT(pub_id,"topic")==topic_name
 
     def is_valid_id(self,pub_id):
-        return 0<=pub_id<self.publ.shape[0]
+        return 0<=pub_id<self.publ.Count
