@@ -18,6 +18,6 @@ services:
         aliases:
           - broker
     environment:
-      PERSIST: "yes"
+      PERSIST: ${PERSISTENCE_MODE}
     depends_on:
       - db
