@@ -28,7 +28,7 @@ class DataHandler:
         if not self.is_SQL:
             self.table.loc[self.table.shape[0]]=row
         else:
-            self.SQL_handle.Insert(self.table_name,[row])
+            self.SQL_handle.Insert(self.table_name,row)
 
     def Update(self,idx,col,val):
         if not self.is_SQL:

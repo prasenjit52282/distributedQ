@@ -19,7 +19,7 @@ class TopicQueues:
         return DataHandler(columns=['msg'],dtypes=['str'],is_SQL=self.is_SQL,SQL_handle=self.sql_handle,table_name=table_name)
 
     def add_msg_to_log(self,log_df,msg): #index is the order & time
-        log_df.Insert(msg)
+        log_df.Insert([msg])
         
     def add_new_topic(self,topic_name):
         self.queues[topic_name]=self.get_empty_topic_log(topic_name)
