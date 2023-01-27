@@ -43,3 +43,10 @@ class DataHandler:
         else:
             #count entries and return
             return 0
+
+    def IncrementBy(self,idx,col,by):
+        if not self.is_SQL:
+            self.table.loc[idx,col]+=by
+        else:
+            #count entries and return
+            pass

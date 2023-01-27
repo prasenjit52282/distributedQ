@@ -21,7 +21,7 @@ class Subscribers:
         return self.subl.GetAT(sub_id,"topic")==topic_name
     
     def topic_consumed_increase_curr_idx(self,sub_id): #only when a valid consume has happened
-        self.subl.Update(sub_id,'curr_idx',self.subl.GetAT(sub_id,'curr_idx')+1)
+        self.subl.IncrementBy(sub_id,'curr_idx',1)
         
     def get_curr_idx(self,sub_id):
         return int(self.subl.GetAT(sub_id,'curr_idx'))
