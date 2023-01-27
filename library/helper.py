@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd
 import mysql.connector
@@ -116,3 +117,9 @@ class SQLHandler:
         self.mycursor.execute(f"SELECT count(id) FROM {table_name}")
         res=self.mycursor.fetchall()
         return res[0][0]
+    
+
+def env_config():
+    config={}
+    config['persist']=True if os.getenv('PERSIST')=='1' else False
+    return config
