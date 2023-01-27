@@ -33,15 +33,15 @@
 
 # Installation Steps
 
-## Deploy broker 
+### Deploy broker 
     persistent mode
     └── sudo docker-compose --env-file ./config/.env.persist up -d
 
     inMemory mode
     └──sudo docker-compose --env-file ./config/.env.inmem up -d
 
-## Restart broker 
+### Restart broker 
     sudo docker-compose restart
 
-## Remove broker
+### Remove broker
     sudo docker-compose down --rmi all
