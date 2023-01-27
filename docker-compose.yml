@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:8.0
+    networks:
+      default:
+        aliases:
+          - mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "abc"
+
+  broker:
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      default:
+        aliases:
+          - broker
+    environment:
+      PERSIST: ${PERSISTENCE_MODE}
+    depends_on:
+      - db

@@ -1,11 +1,13 @@
 from flask import Flask, jsonify, request
 from library.manager import Manager
+from library.helper import env_config
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
-mgr=Manager()
+config=env_config()
+mgr=Manager(config['persist'])
 
 @app.route("/topics",methods=["GET","POST"])
 def handle_topics():
