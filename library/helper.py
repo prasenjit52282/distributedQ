@@ -51,7 +51,13 @@ class DataHandler:
 
 class SQLHandler:
     def __init__(self,host='localhost',user='root',password='abc',db='dQdb'):
-        self.mydb = mysql.connector.connect(host=host,user=user,password=password)
+        connected=False
+        while not connected:
+            try:
+                self.mydb = mysql.connector.connect(host=host,user=user,password=password)
+                connected=True
+            except:
+                pass
         self.mycursor = self.mydb.cursor()
         self._setup(db)
         
@@ -121,5 +127,5 @@ class SQLHandler:
 
 def env_config():
     config={}
-    config['persist']=True if os.getenv('PERSIST')=='1' else False
+    config['persist']=True if os.environ['PERSIST']=='yes' else False
     return config
