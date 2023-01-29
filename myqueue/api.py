@@ -29,7 +29,7 @@ class ApiHandler:
             
     def add_topics(self,topic):
         self.raiseExceptionOnProhabitedTopic(topic)
-        res=requests.post(self.url+'/topics',json={'topic':topic})
+        res=requests.post(self.url+'/topics',json={'topic_name':topic})
         self.raiseExceptionOnFailure(res)
         return self.decodeResponse(res,'message')
             

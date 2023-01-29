@@ -12,7 +12,7 @@ mgr=Manager(config['persist'])
 @app.route("/topics",methods=["GET","POST"])
 def handle_topics():
     if request.method=="POST":
-        topic_name=request.get_json()["topic"]
+        topic_name=request.get_json()["topic_name"]
         response,status=mgr.CreateTopic(topic_name)
         return jsonify(response),status
 
