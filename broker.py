@@ -12,7 +12,7 @@ mgr=Manager(config['persist'])
 @app.route("/topics",methods=["GET","POST"])
 def handle_topics():
     if request.method=="POST":
-        topic_name=request.form.to_dict()["topic"]
+        topic_name=request.get_json()["topic_name"]
         response,status=mgr.CreateTopic(topic_name)
         return jsonify(response),status
 
@@ -23,21 +23,21 @@ def handle_topics():
 
 @app.route("/consumer/register",methods=["POST"])
 def consumer_registration():
-    topic_name=request.form.to_dict()["topic"]
+    topic_name=request.get_json()["topic"]
     response,status=mgr.RegisterConsumer(topic_name)
     return jsonify(response),status
 
 
 @app.route("/producer/register",methods=["POST"])
 def producer_registration():
-    topic_name=request.form.to_dict()["topic"]
+    topic_name=request.get_json()["topic"]
     response,status=mgr.RegisterProducer(topic_name)
     return jsonify(response),status
 
 
 @app.route("/producer/produce",methods=["POST"])
 def handle_produce():
-    data=request.form.to_dict()
+    data=request.get_json()
     topic_name=data["topic"]
     pub_id=int(data["producer_id"])
     msg=data["message"]

@@ -29,22 +29,22 @@ class ApiHandler:
             
     def add_topics(self,topic):
         self.raiseExceptionOnProhabitedTopic(topic)
-        res=requests.post(self.url+'/topics',data={'topic':topic})
+        res=requests.post(self.url+'/topics',json={'topic_name':topic})
         self.raiseExceptionOnFailure(res)
         return self.decodeResponse(res,'message')
             
     def reg_consumer(self,topic):
-        res=requests.post(self.url+'/consumer/register',data={'topic':topic})
+        res=requests.post(self.url+'/consumer/register',json={'topic':topic})
         self.raiseExceptionOnFailure(res)
         return self.decodeResponse(res,'consumer_id')
         
     def reg_producer(self,topic):
         self.raiseExceptionOnProhabitedTopic(topic)
-        res=requests.post(self.url+'/producer/register',data={'topic':topic})
+        res=requests.post(self.url+'/producer/register',json={'topic':topic})
         return self.decodeResponse(res,'producer_id')
         
     def produce(self,topic,producer_id,message):
-        res=requests.post(self.url+'/producer/produce',data={'topic':topic,'producer_id':producer_id,'message':message})
+        res=requests.post(self.url+'/producer/produce',json={'topic':topic,'producer_id':producer_id,'message':message})
         self.raiseExceptionOnFailure(res)
     
     def consume(self,topic,consumer_id):
