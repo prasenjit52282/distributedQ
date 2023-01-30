@@ -1,8 +1,10 @@
 from .api import ApiHandler
+from .task import TaskManager, Task
 
 class MyProducer:
     def __init__(self,topics,broker):
         self.api=ApiHandler(broker)
+        self.tsk_mgr=TaskManager()
         self._setup(topics)
         
     def _setup(self,topics):
@@ -14,7 +16,7 @@ class MyProducer:
         return self.api.can_send()
     
     def send(self,topic,msg):
-        self.api.produce(topic,self.topics_to_id[topic],msg)
+        Task(self.api.produce,(topic,self.topics_to_id[topic],msg),self.tsk_mgr).start()
         
     def stop(self):
-        pass
+        self.tsk_mgr.wait()
