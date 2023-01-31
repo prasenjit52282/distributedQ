@@ -14,7 +14,7 @@ class MyConsumer:
     
     def get_next(self):
         for m in TimeoutIterator(self.consume(),timeout=self.timeout,sentinel=None):
-            if m==None:break
+            if m==None:raise Exception("timeout: no more msg to consume")
             yield m
     
     def consume(self):
@@ -25,3 +25,16 @@ class MyConsumer:
         
     def stop(self):
         pass
+
+
+
+class writeComsumeLog:
+    def __init__(self,file):
+        self.f=open(file,"w")
+        
+    def writeline(self,string):
+        self.f.write(string+"\n")
+        self.f.flush()
+        
+    def __del__(self):
+        self.f.close()

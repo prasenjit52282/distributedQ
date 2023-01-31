@@ -20,3 +20,13 @@ class MyProducer:
         
     def stop(self):
         self.tsk_mgr.wait()
+
+
+
+def readProduceLog(file):
+    with open(file,'r') as f:
+        while True:
+            line=f.readline()
+            if not line:break
+            _,msg,_,topic=line.split()
+            yield (topic,msg)
