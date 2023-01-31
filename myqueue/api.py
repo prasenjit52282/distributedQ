@@ -9,7 +9,7 @@ class ApiHandler:
             raise Exception(f"topic name: {topic} is not allowed")
         
     def raiseExceptionOnFailure(self,res):
-        if res.status_code==400:
+        if res.status_code==400 or res.status_code==500:
             raise Exception(self.decodeResponse(res,'message'))
             
     def decodeResponse(self,res,field):

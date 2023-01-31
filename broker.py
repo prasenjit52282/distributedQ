@@ -63,4 +63,4 @@ def get_size():
 
 @app.errorhandler(Exception)
 def handle_exception(e):
-    return jsonify("Internal server Error: check params"),500
+    return jsonify({"message":"Internal server Error: check params"}),500

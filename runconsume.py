@@ -18,7 +18,7 @@ def consume(cid=1,topics=['T-1','T-2','T-3'],broker='10.110.10.216:5000',log_loc
         writer=writeComsumeLog(f'{log_loc}/consumer_{cid}.txt')
         for msg in consumer.get_next():
             writer.writeline(f"{msg.topic}     {msg.message}")
-    except:pass
+    except:writer.close()
     finally:
         consumer.stop()
 

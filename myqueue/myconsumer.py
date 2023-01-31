@@ -1,3 +1,4 @@
+import os
 from .api import ApiHandler
 from iterators import TimeoutIterator
 
@@ -14,7 +15,7 @@ class MyConsumer:
     
     def get_next(self):
         for m in TimeoutIterator(self.consume(),timeout=self.timeout,sentinel=None):
-            if m==None:raise Exception("timeout: no more msg to consume")
+            if m==None:raise StopIteration("timeout: no more msg to consume")
             yield m
     
     def consume(self):
@@ -24,7 +25,7 @@ class MyConsumer:
                     yield self.api.consume(topic,consumer_id)
         
     def stop(self):
-        pass
+        os.kill(os.getpid(), 9)
 
 
 
@@ -36,5 +37,5 @@ class writeComsumeLog:
         self.f.write(string+"\n")
         self.f.flush()
         
-    def __del__(self):
+    def close(self):
         self.f.close()
