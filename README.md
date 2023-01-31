@@ -77,8 +77,12 @@
     T-2     WARN
     T-1     INFO
 
-# run specified test case
-Implement 5 Producers and 3 consumers with 3 topics using the library developed in Part-C. Given below is the "topic:producers:consumers" mapping.
+### run API test cases
+    COMMAND
+    └──bash testAPI.sh 10.110.10.216 5000
+
+### run 5-producer, 3-consumer setup
+Question: Implement 5 Producers and 3 consumers with 3 topics using the library developed in Part-C. Given below is the "topic:producers:consumers" mapping.
 
 + T1: P1 P2 P3: C1 C2 C3
 + T2: P1 P4 P5: C1 
@@ -101,3 +105,5 @@ Here, the last point means that P1 and P2 will produce to topic T3;  C1, C2 and
     Run all commands together
     -------------------------
     + bash test5P3C.sh 10.110.10.216 5000
+
+** Consumer logs are stored at <strong>./test/consumer_{id}.txt</strong> where id = 1,2,3
