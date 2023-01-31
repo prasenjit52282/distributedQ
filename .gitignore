@@ -162,3 +162,4 @@ cython_debug/
 /**/logs
 test.py
 /**/*.ipynb
+/test/consumer_*.txt
