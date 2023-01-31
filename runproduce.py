@@ -23,7 +23,7 @@ def produce(pid=1,topics=['T-1','T-2','T-3'],broker='10.110.10.216:5000',log_loc
                 topic,msg=next(log_gen)
                 if t!=topic:raise Exception("log file:incompitable, make sure msg for topics are in order for a perticular time")
                 producer.send(topic,msg)
-            #time.sleep(random.randint(0,1))
+            time.sleep(random.random())
     except StopIteration:pass
     finally:
         producer.stop()

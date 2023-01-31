@@ -50,7 +50,7 @@
 
 ### run a producer instance from log file
     COMMAND
-    └──python runproduce.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test
+    └──python runproduce.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test/{EXP}
 
 ** producer_{id}.txt log file format must be maintained else throws <strong>Exception("log file:incompitable")</strong>
 
@@ -65,7 +65,7 @@
 
 ### run a consumer instance and store log
     COMMAND
-    └──python runconsume.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test
+    └──python runconsume.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test/{EXP}
 
 ** consumer_{id}.txt stored log file example 
 
@@ -91,19 +91,19 @@ Question: Implement 5 Producers and 3 consumers with 3 topics using the library 
 Here, the last point means that P1 and P2 will produce to topic T3;  C1, C2 and C3 will consume from T3.
 
     [Producers]
-    └──python runproduce.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test
-    └──python runproduce.py --id 2 --topics T-1 T-3 --broker 10.110.10.216:5000 --log_loc ./test
-    └──python runproduce.py --id 3 --topics T-1 --broker 10.110.10.216:5000 --log_loc ./test
-    └──python runproduce.py --id 4 --topics T-2 --broker 10.110.10.216:5000 --log_loc ./test
-    └──python runproduce.py --id 5 --topics T-2 --broker 10.110.10.216:5000 --log_loc ./test
+    └──python runproduce.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runproduce.py --id 2 --topics T-1 T-3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runproduce.py --id 3 --topics T-1 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runproduce.py --id 4 --topics T-2 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runproduce.py --id 5 --topics T-2 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
 
     [Consumers]
-    └──python runconsume.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test
-    └──python runconsume.py --id 2 --topics T-1 T-3 --broker 10.110.10.216:5000 --log_loc ./test
-    └──python runconsume.py --id 3 --topics T-1 T-3 --broker 10.110.10.216:5000 --log_loc ./test
+    └──python runconsume.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runconsume.py --id 2 --topics T-1 T-3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runconsume.py --id 3 --topics T-1 T-3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
 
     Run all commands together
     -------------------------
     + bash test5P3C.sh 10.110.10.216 5000
 
-** Consumer logs are stored at <strong>./test/consumer_{id}.txt</strong> where id = 1,2,3
+** Consumer logs are stored at <strong>./test/5P3C/consumer_{id}.txt</strong> where id = 1,2,3
