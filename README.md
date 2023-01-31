@@ -94,6 +94,10 @@ Here, the last point means that P1 and P2 will produce to topic T3;  C1, C2 and
     └──python runconsume.py --id 5 --topics T-2 --broker 10.110.10.216:5000 --log_loc ./test
 
     [Consumers]
-    └──python runconsume.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test'
-    └──python runconsume.py --id 2 --topics T-1 T-3 --broker 10.110.10.216:5000 --log_loc ./test'
-    └──python runconsume.py --id 3 --topics T-1 T-3 --broker 10.110.10.216:5000 --log_loc ./test'
+    └──python runconsume.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test
+    └──python runconsume.py --id 2 --topics T-1 T-3 --broker 10.110.10.216:5000 --log_loc ./test
+    └──python runconsume.py --id 3 --topics T-1 T-3 --broker 10.110.10.216:5000 --log_loc ./test
+
+    Run all commands together
+    -------------------------
+    + bash test5P3C.sh 10.110.10.216 5000
