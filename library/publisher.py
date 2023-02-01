@@ -14,8 +14,7 @@ class Publishers:
         return DataHandler(columns=['topic'],dtypes=["str"],is_SQL=self.is_SQL,SQL_handle=self.sql_handle,table_name=tablename)
 
     def add_publisher(self):
-        pub_id=self.publ.Count
-        self.publ.Insert([np.nan])
+        pub_id=self.publ.Insert([np.nan])
         return pub_id
 
     def reg_publisher_with_topic(self,pub_id,topic_name): #id is same is index

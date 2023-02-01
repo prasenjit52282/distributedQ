@@ -27,9 +27,11 @@ class DataHandler:
 
     def Insert(self,row):
         if not self.is_SQL:
+            id=self.table.shape[0]
             self.table.loc[self.table.shape[0]]=row
         else:
-            self.SQL_handle.jobrunner.apply(self.SQL_handle.Insert,(self.table_name,row))
+            id=self.SQL_handle.jobrunner.apply(self.SQL_handle.Insert,(self.table_name,row))
+        return id
 
     def Update(self,idx,col,val):
         if not self.is_SQL:
@@ -117,6 +119,7 @@ class SQLHandler:
         self.query(f"UPDATE {table_name} SET {col}={col}+{by} WHERE id={idx+1}")
 
     def Insert(self,table_name,row):
+        id=self.Count(table_name)
         row_str='0'
         for v in row:
             if type(v)==str:
@@ -125,6 +128,7 @@ class SQLHandler:
                 v_reduced='NULL' if np.isnan(v) else v
                 row_str+=f", {v_reduced}"
         self.query(f"INSERT INTO {table_name} VALUES ({row_str})")
+        return id
 
     def getTopicTables(self,):
         res=self.query("SHOW TABLES")

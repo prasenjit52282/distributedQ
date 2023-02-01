@@ -14,8 +14,7 @@ class Subscribers:
         return DataHandler(columns=['topic','curr_idx'],dtypes=["str","int"],is_SQL=self.is_SQL,SQL_handle=self.sql_handle,table_name=tablename)
 
     def add_subscriber(self):
-        sub_id=self.subl.Count #index is the sub_id
-        self.subl.Insert([np.nan,np.nan])
+        sub_id=self.subl.Insert([np.nan,np.nan])
         return sub_id
 
     def reg_subcriber_with_topic(self,sub_id,topic_name,last_topic_idx): #last_topic_idx=curr idx of msg in topic
