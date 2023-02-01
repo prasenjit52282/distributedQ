@@ -114,6 +114,13 @@ Here 10.110.10.216:5000 is used as an examle broker instance.
     COMMAND
     └──bash testAPI.sh 10.110.10.216 5000
 
+Test results are as follows
+<p align="center">
+      <img src="images/testAPI.png" width="50%"/>
+</p>
+
+<br>
+
 <p align="center">
       <img src="images/2P2C.png" width="50%"/><br><strong>Fig.2: 2 Producers 2 Consumers</strong>
 </p>
@@ -138,7 +145,12 @@ Here, the last point means that P1 and P2 will produce to topic T2;  C1, C2 wil
     -------------------------
     + bash test2P2C.sh 10.110.10.216 5000
 
-** Consumer logs are stored at <strong>./test/2P2C/consumer_{id}.txt</strong> where id = 1,2
+Test results are as follows and Consumer logs are stored at <strong>./test/2P2C/consumer_{id}.txt</strong> where id = 1,2
+<p align="center">
+      <img src="images/test2P2C.png" width="90%"/>
+</p>
+
+<br>
 
 <p align="center">
       <img src="images/5P3C.png" width="50%"/><br><strong>Fig.3: 5 Producers 3 Consumers</strong>
