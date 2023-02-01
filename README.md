@@ -47,6 +47,7 @@
     sudo docker-compose down --rmi all
 
 # Testing
+Here 10.110.10.216:5000 is used as an examle broker instance.
 
 ### run a producer instance from log file
     COMMAND
@@ -80,6 +81,29 @@
 ### run API test cases
     COMMAND
     └──bash testAPI.sh 10.110.10.216 5000
+
+### run 2-producer, 2-consumer setup
+Question: Implement 2 Producers and 2 consumers with 2 topics using the library developed in Part-C. Given below is the "topic:producers:consumers" mapping.
+
++ T1: P1 P2: C1 C2
++ T2: P1 P2: C1 C2
+
+Here, the last point means that P1 and P2 will produce to topic T2;  C1, C2 will consume from T2.
+
+    [Producers]
+    └──python runproduce.py --id 1 --topics T1 T2 --broker 10.110.10.216:5000 --log_loc ./test/2P2C
+    └──python runproduce.py --id 2 --topics T1 T2 --broker 10.110.10.216:5000 --log_loc ./test/2P2C
+
+    [Consumers]
+    └──python runconsume.py --id 1 --topics T1 T2 --broker 10.110.10.216:5000 --log_loc ./test/2P2C
+    └──python runconsume.py --id 2 --topics T1 T2 --broker 10.110.10.216:5000 --log_loc ./test/2P2C
+
+    Run all commands together
+    -------------------------
+    + bash test2P2C.sh 10.110.10.216 5000
+
+** Consumer logs are stored at <strong>./test/2P2C/consumer_{id}.txt</strong> where id = 1,2
+
 
 ### run 5-producer, 3-consumer setup
 Question: Implement 5 Producers and 3 consumers with 3 topics using the library developed in Part-C. Given below is the "topic:producers:consumers" mapping.
