@@ -119,7 +119,7 @@ Test results are as follows
       <img src="images/testAPI.png" width="70%"/>
 </p>
 
-<br>
+<hr>
 
 <p align="center">
       <img src="images/2P2C.png" width="50%"/><br><strong>Fig.2: 2 Producers 2 Consumers</strong>
@@ -150,7 +150,7 @@ Test results are as follows and Consumer logs are stored at <strong>./test/2P2C/
       <img src="images/test2P2C.png" width="90%"/>
 </p>
 
-<br>
+<hr>
 
 <p align="center">
       <img src="images/5P3C.png" width="50%"/><br><strong>Fig.3: 5 Producers 3 Consumers</strong>
