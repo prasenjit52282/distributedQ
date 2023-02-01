@@ -69,7 +69,6 @@ class SQLHandler:
                 pass
     
     def query(self, sql):
-        print("running",sql)
         try:
             cursor = self.mydb.cursor()
             cursor.execute(sql)
@@ -80,7 +79,6 @@ class SQLHandler:
         res=cursor.fetchall()
         cursor.close()
         self.mydb.commit()
-        print("committing",sql,res)
         return res
 
     def UseDB(self,dbname=None):
