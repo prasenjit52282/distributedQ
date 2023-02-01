@@ -50,32 +50,32 @@
 
 ### run a producer instance from log file
     COMMAND
-    └──python runproduce.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test/{EXP}
+    └──python runproduce.py --id 1 --topics T1 T2 T3 --broker 10.110.10.216:5000 --log_loc ./test/{EXP}
 
 ** producer_{id}.txt log file format must be maintained else throws <strong>Exception("log file:incompitable")</strong>
 
     [ts         msg       parallel    topic]
     ---------------------------------------
-    21:52:23	INFO		P1-1		T-1
-    21:52:23	INFO		P1-1		T-2
-    21:52:23	INFO		P1-1		T-3
-    21:52:23	INFO		P1-2		T-1
-    21:52:23	INFO		P1-2		T-2
-    21:52:23	INFO		P1-2		T-3
+    21:52:23	INFO		P1-1		T1
+    21:52:23	INFO		P1-1		T2
+    21:52:23	INFO		P1-1		T3
+    21:52:23	INFO		P1-2		T1
+    21:52:23	INFO		P1-2		T2
+    21:52:23	INFO		P1-2		T3
 
 ### run a consumer instance and store log
     COMMAND
-    └──python runconsume.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test/{EXP}
+    └──python runconsume.py --id 1 --topics T1 T2 T3 --broker 10.110.10.216:5000 --log_loc ./test/{EXP}
 
 ** consumer_{id}.txt stored log file example 
 
     [ts      msg]
     ---------------------------------------
-    T-1     INFO
-    T-2     INFO
-    T-3     INFO
-    T-2     WARN
-    T-1     INFO
+    T1     INFO
+    T2     INFO
+    T3     INFO
+    T2     WARN
+    T1     INFO
 
 ### run API test cases
     COMMAND
@@ -91,16 +91,16 @@ Question: Implement 5 Producers and 3 consumers with 3 topics using the library 
 Here, the last point means that P1 and P2 will produce to topic T3;  C1, C2 and C3 will consume from T3.
 
     [Producers]
-    └──python runproduce.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
-    └──python runproduce.py --id 2 --topics T-1 T-3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
-    └──python runproduce.py --id 3 --topics T-1 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
-    └──python runproduce.py --id 4 --topics T-2 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
-    └──python runproduce.py --id 5 --topics T-2 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runproduce.py --id 1 --topics T1 T2 T3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runproduce.py --id 2 --topics T1 T3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runproduce.py --id 3 --topics T1 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runproduce.py --id 4 --topics T2 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runproduce.py --id 5 --topics T2 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
 
     [Consumers]
-    └──python runconsume.py --id 1 --topics T-1 T-2 T-3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
-    └──python runconsume.py --id 2 --topics T-1 T-3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
-    └──python runconsume.py --id 3 --topics T-1 T-3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runconsume.py --id 1 --topics T1 T2 T3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runconsume.py --id 2 --topics T1 T3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
+    └──python runconsume.py --id 3 --topics T1 T3 --broker 10.110.10.216:5000 --log_loc ./test/5P3C
 
     Run all commands together
     -------------------------

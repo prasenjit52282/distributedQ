@@ -96,6 +96,12 @@ run_test(consume,("secondtopic",cid),shoulderr=True)     #AsExpected: Consumer:3
 run_test(consume,(t1,cid))
 run_test(get_size,(t1,cid,1))
 
+cid2=run_test(reg_consumer,(t1,))
+run_test(get_size,(t1,cid2,0))
+run_test(produce,(t1,pid))
+run_test(get_size,(t1,cid,2))
+run_test(get_size,(t1,cid2,1))
+
 
 if allpass:
     print("------------>  All test cases are passed :)  <------------")

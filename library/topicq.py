@@ -35,8 +35,8 @@ class TopicQueues:
         #curr_idx_in_q is where (not read the data yet,already 1 less so no +1) the consumer_id currently in queue
     
     def topic_last_idx(self,topic_name):
-        idx=self.queues[topic_name].Count-1
-        return 0 if idx<0 else idx
+        idx=self.queues[topic_name].Count
+        return idx
 
     def get_topic_list(self):
         return list(self.queues.keys())
