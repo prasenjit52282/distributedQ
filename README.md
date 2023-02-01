@@ -170,3 +170,7 @@ Here, the last point means that P1 and P2 will produce to topic T3;  C1, C2 and
     + bash test5P3C.sh 10.110.10.216 5000
 
 ** Consumer logs are stored at <strong>./test/5P3C/consumer_{id}.txt</strong> where id = 1,2,3
+
+# Contact Me
+
+This is Assignment 1 of CS60002: Distributed Systems course in IIT Kharagpur, taught by [Dr. Sandip Chakraborty](https://cse.iitkgp.ac.in/~sandipc/). For questions and general feedback, contact [Prasenjit Karmakar](www.linkedin.com/in/prasenjit52282).
