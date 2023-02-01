@@ -119,7 +119,7 @@ Here 10.110.10.216:5000 is used as an examle broker instance.
 </p>
 
 ### run 2-producer, 2-consumer setup
-Question: Implement 2 Producers and 2 consumers with 2 topics using the library developed in Part-C. Given below is the "topic:producers:consumers" mapping.
+Question: Implement 2 Producers and 2 consumers with 2 topics as shown in Fig. 2 using the library developed in Part-C. Given below is the "topic:producers:consumers" mapping.
 
 + T1: P1 P2: C1 C2
 + T2: P1 P2: C1 C2
@@ -145,7 +145,7 @@ Here, the last point means that P1 and P2 will produce to topic T2;  C1, C2 wil
 </p>
 
 ### run 5-producer, 3-consumer setup
-Question: Implement 5 Producers and 3 consumers with 3 topics using the library developed in Part-C. Given below is the "topic:producers:consumers" mapping.
+Question: Implement 5 Producers and 3 consumers with 3 topics as shown in Fig. 3 using the library developed in Part-C. Given below is the "topic:producers:consumers" mapping.
 
 + T1: P1 P2 P3: C1 C2 C3
 + T2: P1 P4 P5: C1 
