@@ -179,7 +179,10 @@ Here, the last point means that P1 and P2 will produce to topic T3;  C1, C2 and
     -------------------------
     + bash test5P3C.sh 10.110.10.216 5000
 
-** Consumer logs are stored at <strong>./test/5P3C/consumer_{id}.txt</strong> where id = 1,2,3
+Test results are as follows and Consumer logs are stored at <strong>./test/5P3C/consumer_{id}.txt</strong> where id = 1,2,3
+<p align="center">
+      <img src="images/test5P3C.png" width="90%"/>
+</p>
 
 # Contact Me
 
