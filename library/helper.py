@@ -16,43 +16,43 @@ class DataHandler:
         if not self.is_SQL:
             self.table=pd.DataFrame(columns=self.columns)
         else:
-            self.jobrunner=Pool(1)
-            self.table_name=self.jobrunner.apply(self.SQL_handle.hasTable,(table_name,self.columns,self.dtypes))
+            self.table_name=self.SQL_handle.jobrunner.apply(self.SQL_handle.hasTable,(table_name,self.columns,self.dtypes))
     
     @property
     def Count(self):
         if not self.is_SQL:
             return self.table.shape[0]
         else:
-            return self.jobrunner.apply(self.SQL_handle.Count,(self.table_name,))
+            return self.SQL_handle.jobrunner.apply(self.SQL_handle.Count,(self.table_name,))
 
     def Insert(self,row):
         if not self.is_SQL:
             self.table.loc[self.table.shape[0]]=row
         else:
-            self.jobrunner.apply(self.SQL_handle.Insert,(self.table_name,row))
+            self.SQL_handle.jobrunner.apply(self.SQL_handle.Insert,(self.table_name,row))
 
     def Update(self,idx,col,val):
         if not self.is_SQL:
             self.table.loc[idx,col]=val
         else:
-            self.jobrunner.apply(self.SQL_handle.setVal,(self.table_name,idx,col,val))
+            self.SQL_handle.jobrunner.apply(self.SQL_handle.setVal,(self.table_name,idx,col,val))
 
     def GetAT(self,idx,col):
         if not self.is_SQL:
             return self.table.loc[idx,col]
         else:
-            return self.jobrunner.apply(self.SQL_handle.getVal,(self.table_name,idx,col))
+            return self.SQL_handle.jobrunner.apply(self.SQL_handle.getVal,(self.table_name,idx,col))
 
     def IncrementBy(self,idx,col,by):
         if not self.is_SQL:
             self.table.loc[idx,col]+=by
         else:
-            self.jobrunner.apply(self.SQL_handle.IncrementBy,(self.table_name,idx,col,by))
+            self.SQL_handle.jobrunner.apply(self.SQL_handle.IncrementBy,(self.table_name,idx,col,by))
 
 
 class SQLHandler:
     def __init__(self,host='localhost',user='root',password='abc',db='dQdb'):
+        self.jobrunner=Pool(1)
         self.host=host
         self.user=user
         self.password=password
@@ -65,8 +65,8 @@ class SQLHandler:
                 self.mydb = mysql.connector.connect(host=self.host,user=self.user,password=self.password)
                 self.UseDB(self.db)
                 connected=True
-            except Exception as e:
-                print(e)
+            except Exception:
+                pass
     
     def query(self, sql):
         print("running",sql)
