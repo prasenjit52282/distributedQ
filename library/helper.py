@@ -2,7 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import mysql.connector
-from multiprocessing.dummy import ThreadPool
+from multiprocessing.dummy import Pool
 
 class DataHandler:
     def __init__(self,columns=None,dtypes=None,is_SQL=False,SQL_handle=None,table_name=None):
@@ -16,7 +16,7 @@ class DataHandler:
         if not self.is_SQL:
             self.table=pd.DataFrame(columns=self.columns)
         else:
-            self.jobrunner=ThreadPool(1)
+            self.jobrunner=Pool(1)
             self.table_name=self.jobrunner.apply(self.SQL_handle.hasTable,(table_name,self.columns,self.dtypes))
     
     @property
@@ -69,6 +69,7 @@ class SQLHandler:
                 print(e)
     
     def query(self, sql):
+        print("running",sql)
         try:
             cursor = self.mydb.cursor()
             cursor.execute(sql)
@@ -79,6 +80,7 @@ class SQLHandler:
         res=cursor.fetchall()
         cursor.close()
         self.mydb.commit()
+        print("committing",sql,res)
         return res
 
     def UseDB(self,dbname=None):
