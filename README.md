@@ -1,6 +1,6 @@
 # Distributed Queue
 <p align="center">
-      <img src="images/broker.png" width="70%"/><br><strong>Fig.1: Overview</strong>
+      <img src="images/broker.png" width="90%"/><br><strong>Fig.1: Overview</strong>
 </p>
 
 # Design
@@ -115,7 +115,7 @@ Here 10.110.10.216:5000 is used as an examle broker instance.
     └──bash testAPI.sh 10.110.10.216 5000
 
 <p align="center">
-      <img src="images/2P2C.png" width="30%"/><br><strong>Fig.2: 2 Producers 2 Consumers</strong>
+      <img src="images/2P2C.png" width="70%"/><br><strong>Fig.2: 2 Producers 2 Consumers</strong>
 </p>
 
 ### run 2-producer, 2-consumer setup
@@ -141,7 +141,7 @@ Here, the last point means that P1 and P2 will produce to topic T2;  C1, C2 wil
 ** Consumer logs are stored at <strong>./test/2P2C/consumer_{id}.txt</strong> where id = 1,2
 
 <p align="center">
-      <img src="images/5P3C.png" width="30%"/><br><strong>Fig.3: 5 Producers 3 Consumers</strong>
+      <img src="images/5P3C.png" width="70%"/><br><strong>Fig.3: 5 Producers 3 Consumers</strong>
 </p>
 
 ### run 5-producer, 3-consumer setup
