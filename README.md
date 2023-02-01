@@ -116,7 +116,7 @@ Here 10.110.10.216:5000 is used as an examle broker instance.
 
 Test results are as follows
 <p align="center">
-      <img src="images/testAPI.png" width="50%"/>
+      <img src="images/testAPI.png" width="70%"/>
 </p>
 
 <br>
